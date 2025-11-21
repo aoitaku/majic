@@ -94,9 +94,23 @@
               "name": "string.quoted.other.multiline.majic"
             }
           },
+          "contentName": "text.html.markdown",
           "patterns": [
             {
-              "include": "text.html.markdown"
+              "name": "markup.heading.markdown",
+              "match": "^\\s*#{1,6}\\s+.*$"
+            },
+            {
+              "name": "markup.bold.markdown",
+              "match": "\\*\\*[^*]+\\*\\*"
+            },
+            {
+              "name": "markup.italic.markdown",
+              "match": "\\*[^*]+\\*"
+            },
+            {
+              "name": "markup.inline.raw.markdown",
+              "match": "`[^`]+`"
             }
           ]
         },
