@@ -1,0 +1,83 @@
+{
+  "name": "majic-vscode",
+  "displayName": "MaJic Support",
+  "description": "Macro JSON Interface for Configuration",
+  "version": "0.0.1",
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onLanguage:majic"
+  ],
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "dependencies": {
+    "vscode-languageclient": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.60.0",
+    "@types/node": "^20.11.19",
+    "typescript": "^5.3.3"
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -b",
+    "build": "npm run compile",
+    "watch": "tsc -b -w"
+  },
+  "contributes": {
+    "languages": [
+      {
+        "id": "majic",
+        "aliases": [
+          "MaJic",
+          "majic"
+        ],
+        "extensions": [
+          ".mj",
+          ".majic"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "MaJic configuration",
+      "properties": {
+        "majicLanguageServer.maxNumberOfProblems": {
+          "scope": "resource",
+          "type": "number",
+          "default": 100,
+          "description": "Controls the maximum number of problems produced by the server."
+        },
+        "majicLanguageServer.trace.server": {
+          "scope": "window",
+          "type": "string",
+          "enum": [
+            "off",
+            "messages",
+            "verbose"
+          ],
+          "default": "off",
+          "description": "Traces the communication between VS Code and the language server."
+        }
+      }
+    },
+    "grammars": [
+      {
+        "language": "majic",
+        "scopeName": "source.majic",
+        "path": "./syntaxes/majic.tmLanguage.json",
+        "embeddedLanguages": {
+          "meta.embedded.block.javascript": "javascript",
+          "meta.embedded.block.markdown": "markdown",
+          "meta.embedded.block.sql": "sql",
+          "meta.embedded.block.html": "html",
+          "meta.embedded.block.css": "css"
+        }
+      }
+    ]
+  }
+}

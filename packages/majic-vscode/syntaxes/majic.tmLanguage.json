@@ -1,0 +1,249 @@
+{
+  "scopeName": "source.majic",
+  "patterns": [
+    {
+      "include": "#javascript-section"
+    },
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#macros"
+    },
+    {
+      "include": "#tagged-literals"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#constants"
+    },
+    {
+      "include": "#numbers"
+    },
+    {
+      "include": "#keys"
+    },
+    {
+      "include": "#operators"
+    }
+  ],
+  "repository": {
+    "javascript-section": {
+      "name": "meta.embedded.block.javascript",
+      "begin": "^---\\s*$",
+      "end": "^---\\s*$",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.separator.majic"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.separator.majic"
+        }
+      },
+      "patterns": [
+        {
+          "include": "source.js"
+        }
+      ]
+    },
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.number-sign.majic",
+          "match": "#.*$"
+        },
+        {
+          "name": "comment.line.double-slash.majic",
+          "match": "//.*$"
+        },
+        {
+          "name": "comment.block.majic",
+          "begin": "/\\*",
+          "end": "\\*/"
+        }
+      ]
+    },
+    "macros": {
+      "patterns": [
+        {
+          "name": "entity.name.function.macro.majic",
+          "match": "(@[a-zA-Z0-9_]+)"
+        }
+      ]
+    },
+    "tagged-literals": {
+      "patterns": [
+        {
+          "name": "meta.embedded.block.markdown",
+          "begin": "(md|markdown)(''')",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.control.directive.majic"
+            },
+            "2": {
+              "name": "string.quoted.other.multiline.majic"
+            }
+          },
+          "end": "'''",
+          "endCaptures": {
+            "0": {
+              "name": "string.quoted.other.multiline.majic"
+            }
+          },
+          "patterns": [
+            {
+              "include": "text.html.markdown"
+            }
+          ]
+        },
+        {
+          "name": "meta.embedded.block.javascript",
+          "begin": "(js|javascript)(''')",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.control.directive.majic"
+            },
+            "2": {
+              "name": "string.quoted.other.multiline.majic"
+            }
+          },
+          "end": "'''",
+          "endCaptures": {
+            "0": {
+              "name": "string.quoted.other.multiline.majic"
+            }
+          },
+          "patterns": [
+            {
+              "include": "source.js"
+            }
+          ]
+        },
+        {
+          "name": "meta.embedded.block.sql",
+          "begin": "(sql)(''')",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.control.directive.majic"
+            },
+            "2": {
+              "name": "string.quoted.other.multiline.majic"
+            }
+          },
+          "end": "'''",
+          "endCaptures": {
+            "0": {
+              "name": "string.quoted.other.multiline.majic"
+            }
+          },
+          "patterns": [
+            {
+              "include": "source.sql"
+            }
+          ]
+        },
+        {
+          "name": "meta.embedded.block.html",
+          "begin": "(html)(''')",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.control.directive.majic"
+            },
+            "2": {
+              "name": "string.quoted.other.multiline.majic"
+            }
+          },
+          "end": "'''",
+          "endCaptures": {
+            "0": {
+              "name": "string.quoted.other.multiline.majic"
+            }
+          },
+          "patterns": [
+            {
+              "include": "text.html.basic"
+            }
+          ]
+        },
+        {
+          "name": "meta.embedded.block.css",
+          "begin": "(css)(''')",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.control.directive.majic"
+            },
+            "2": {
+              "name": "string.quoted.other.multiline.majic"
+            }
+          },
+          "end": "'''",
+          "endCaptures": {
+            "0": {
+              "name": "string.quoted.other.multiline.majic"
+            }
+          },
+          "patterns": [
+            {
+              "include": "source.css"
+            }
+          ]
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.other.multiline.majic",
+          "begin": "'''",
+          "end": "'''"
+        },
+        {
+          "name": "string.quoted.double.majic",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.escape.majic",
+              "match": "\\\\."
+            }
+          ]
+        }
+      ]
+    },
+    "constants": {
+      "patterns": [
+        {
+          "name": "constant.language.majic",
+          "match": "\\b(true|false|null)\\b"
+        }
+      ]
+    },
+    "numbers": {
+      "name": "constant.numeric.majic",
+      "match": "-?\\b\\d+(\\.\\d+)?([eE][+-]?\\d+)?\\b"
+    },
+    "keys": {
+      "patterns": [
+        {
+          "match": "([^\\s:,{}\\[\\]]+)\\s*(:)",
+          "captures": {
+            "1": {
+              "name": "support.type.property-name.majic"
+            },
+            "2": {
+              "name": "punctuation.separator.dictionary.key-value.majic"
+            }
+          }
+        }
+      ]
+    },
+    "operators": {
+      "match": "[,:\\[\\]{}]",
+      "name": "punctuation.separator.majic"
+    }
+  }
+}
